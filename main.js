@@ -69,7 +69,7 @@ clearButton.addEventListener("click", function() {
     num2 = undefined;
     operator = undefined;
     displayValue = "";
-    display.textContent = displayValue;
+    display.textContent = 0;
     operatorPressed = false;
 });
 
