@@ -6,6 +6,8 @@ let operatorPressed = false;
 
 const numberButtons = document.querySelectorAll("#numButton");
 const decimalButton = document.querySelector("#decimalButton");
+const signChangeButton = document.querySelector("#signChangeButton");
+const deleteButton = document.querySelector("#deleteButton");
 const opperatorButtons = document.querySelectorAll("#oppButton");
 const clearButton = document.querySelector("#clearButton");
 const equalButton = document.querySelector("#equalButton");
@@ -32,7 +34,17 @@ decimalButton.addEventListener("click", function() {
     }
     displayValue += decimalButton.textContent;
     display.textContent = displayValue; 
-})
+});
+
+signChangeButton.addEventListener("click", function() {
+    displayValue = displayValue * -1;
+    display.textContent = displayValue;
+});
+
+deleteButton.addEventListener("click", function() {
+    displayValue = displayValue.slice(0, -1);
+    display.textContent = displayValue;
+});
 
 opperatorButtons.forEach((button => 
     button.addEventListener("click", function() {
