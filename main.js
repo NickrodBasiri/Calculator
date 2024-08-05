@@ -5,10 +5,13 @@ let displayValue = "";
 let operatorPressed = false;
 
 const numberButtons = document.querySelectorAll("#numButton");
+const decimalButton = document.querySelector("#decimalButton");
 const opperatorButtons = document.querySelectorAll("#oppButton");
 const clearButton = document.querySelector("#clearButton");
 const equalButton = document.querySelector("#equalButton");
 const display = document.querySelector("#displayText");
+
+display.textContent = 0;
 
 numberButtons.forEach((button) => 
     button.addEventListener("click", function() {
@@ -20,6 +23,17 @@ numberButtons.forEach((button) =>
         display.textContent = displayValue;
     }));
 
+decimalButton.addEventListener("click", function() {
+    if (displayValue.toString().includes(".")) {
+        return;
+    }
+    if(display.textContent == 0) {
+        displayValue = 0;
+    }
+    displayValue += decimalButton.textContent;
+    display.textContent = displayValue; 
+})
+
 opperatorButtons.forEach((button => 
     button.addEventListener("click", function() {
         if (num1 == undefined) {
@@ -29,7 +43,6 @@ opperatorButtons.forEach((button =>
         } else {
             num2 = displayValue;
             const result = operate(num1, num2, operator);
-            console.log(result);
             displayValue = result;
             display.textContent = displayValue;
             num1 = displayValue;
@@ -49,12 +62,16 @@ equalButton.addEventListener("click", function() {
     display.textContent = displayValue;
     num1 = undefined;
     num2 = undefined;
-    console.log(displayValue);
-    console.log(num2);
-})
+});
 
-
-clearButton.addEventListener("click", () => console.log(num1, num2, operator, operatorPressed));
+clearButton.addEventListener("click", function() {
+    num1 = undefined;
+    num2 = undefined;
+    operator = undefined;
+    displayValue = "";
+    display.textContent = displayValue;
+    operatorPressed = false;
+});
 
 function operate(num1, num2, operator) {
     if (operator == "+") {
@@ -67,6 +84,9 @@ function operate(num1, num2, operator) {
         return multiply(num1, num2);
     }
     if (operator == "/") {
+        if (num2 == 0) {
+            return "ERROR";
+        }
         return divide(num1, num2);
     }
 }
@@ -80,9 +100,9 @@ function subtract(num1, num2) {
 }
 
 function multiply(num1, num2) {
-    return Number(num1) * Number(num2);
+    return Math.round((Number(num1) * Number(num2)) * 100000) / 100000;
 }
 
 function divide(num1, num2) {
-    return Number(num1) / Number(num2);
+    return Math.round((Number(num1) / Number(num2)) * 100000) / 100000;
 }
