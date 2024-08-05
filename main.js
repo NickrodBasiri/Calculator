@@ -2,7 +2,7 @@ let num1;
 let num2;
 let operator;
 let displayValue = "";
-
+let operatorPressed = false;
 
 const numberButtons = document.querySelectorAll("#numButton");
 const opperatorButtons = document.querySelectorAll("#oppButton");
@@ -12,40 +12,46 @@ const display = document.querySelector("#displayText");
 
 numberButtons.forEach((button) => 
     button.addEventListener("click", function() {
+        if (operatorPressed) {
+            displayValue = "";
+            operatorPressed = false;
+        }
         displayValue += button.textContent;
         display.textContent = displayValue;
     }));
 
 opperatorButtons.forEach((button => 
     button.addEventListener("click", function() {
-       // if (!(num1 == null)) {
-       //     num2 == displayValue;
-       // } else if (!(num1 == null) && !(num2 == null)) {
-       //     operator = button.textContent;
-       //     num1 = operate(num1, num2, operator);
-       //     displayValue = num1;
-       //     display.textContent = displayValue;
-       // }
-        num1 = displayValue;
-        operator = button.textContent;
-        displayValue = "";
-        display.textContent = displayValue;
-        console.log(num1);
-        console.log(displayValue);
-        console.log(operator);
+        if (num1 == undefined) {
+            operatorPressed = true;
+            operator = button.textContent;
+            num1 = displayValue;
+        } else {
+            num2 = displayValue;
+            const result = operate(num1, num2, operator);
+            console.log(result);
+            displayValue = result;
+            display.textContent = displayValue;
+            num1 = displayValue;
+            num2 = undefined;
+            operatorPressed = true;
+            operator = button.textContent;
+        }
     })
-))
+));
 
 equalButton.addEventListener("click", function() {
     num2 = displayValue;
     displayValue = operate(num1, num2, operator);
     display.textContent = displayValue;
+    num1 = undefined;
+    num2 = undefined;
     console.log(displayValue);
     console.log(num2);
 })
 
 
-clearButton.addEventListener("click", () => console.log(num1));
+clearButton.addEventListener("click", () => console.log(num1, num2, operator, operatorPressed));
 
 function operate(num1, num2, operator) {
     if (operator == "+") {
@@ -77,4 +83,3 @@ function multiply(num1, num2) {
 function divide(num1, num2) {
     return Number(num1) / Number(num2);
 }
-
