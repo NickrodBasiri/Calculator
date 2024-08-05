@@ -1,14 +1,39 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: darkcyan;
+}
+
+.background {
+display: flex;
+flex-direction: column;
+width: 512px;
+height: 772px;
+background-color: brown;
+border: 4px solid black;
+border-radius: 8px;
+}
+
 #display {
-    height: 64px;
-    width: 256px;
+    height: 120px;
+    width: 490px;
     background-color: black;
     color: white;
-    text-align: center;
+    text-align: end;
+    align-self: center;
+    margin-top: 4px;
+    border: 4px solid gray;
+    border-radius: 8px;
+    font-family: system-ui;
+    font-size: 32px;
+    padding-right: 8px;
 }
+
+
 
 .buttons {
     display: flex;
-    width: 256px;
+    width: 512px;
 }
 
 .operations {
@@ -23,14 +48,23 @@
 #clearButton, 
 #decimalButton, 
 #equalButton {
-    height: 60px;
-    width: 60px;
-    margin: 2px;
+    height: 120px;
+    width: 120px;
+    margin: 4px;
+    border: 4px solid black;
+    border-radius: 8px;
+    font-family: system-ui;
+    font-size: 32px;
+}
+
+#oppButton,
+#equalButton {
+    background-color: lightgray;
 }
 
 .zero#numButton {
-    height: 60px;
-    width: 124px;
+    height: 120px;
+    width: 248px;
 }
 
 .numpad {
