@@ -41,6 +41,9 @@ opperatorButtons.forEach((button =>
 ));
 
 equalButton.addEventListener("click", function() {
+    if (num1 == undefined) {
+        return;
+    }
     num2 = displayValue;
     displayValue = operate(num1, num2, operator);
     display.textContent = displayValue;
