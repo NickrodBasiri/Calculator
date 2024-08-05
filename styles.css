@@ -1,7 +1,44 @@
 #display {
     height: 64px;
-    width: 128px;
-    background-color: red;
+    width: 256px;
+    background-color: black;
     color: white;
     text-align: center;
+}
+
+.buttons {
+    display: flex;
+    width: 256px;
+}
+
+.operations {
+    display: flex;
+    flex-direction: column;
+}
+
+#numButton, 
+#oppButton, 
+#signChangeButton, 
+#deleteButton, 
+#clearButton, 
+#decimalButton, 
+#equalButton {
+    height: 60px;
+    width: 60px;
+    margin: 2px;
+}
+
+.zero#numButton {
+    height: 60px;
+    width: 124px;
+}
+
+.numpad {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.topButtons, 
+.bottomButtons {
+    display: flex;
 }
