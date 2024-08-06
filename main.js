@@ -3,6 +3,7 @@ let num2;
 let operator;
 let displayValue = "";
 let operatorPressed = false;
+let maxLength = false;
 
 const numberButtons = document.querySelectorAll("#numButton");
 const decimalButton = document.querySelector("#decimalButton");
@@ -21,12 +22,19 @@ numberButtons.forEach((button) =>
             displayValue = "";
             operatorPressed = false;
         }
+        if (displayValue.length > 9) {
+            return;
+        }
         displayValue += button.textContent;
         display.textContent = displayValue;
+        console.log(displayValue);
     }));
 
 decimalButton.addEventListener("click", function() {
     if (displayValue.toString().includes(".")) {
+        return;
+    }
+    if (displayValue.length > 9) {
         return;
     }
     if(display.textContent == 0) {
@@ -37,6 +45,9 @@ decimalButton.addEventListener("click", function() {
 });
 
 signChangeButton.addEventListener("click", function() {
+    if (displayValue.length > 9) {
+        return;
+    }
     displayValue = displayValue * -1;
     display.textContent = displayValue;
 });
@@ -87,19 +98,31 @@ clearButton.addEventListener("click", function() {
 
 function operate(num1, num2, operator) {
     if (operator == "+") {
-        return add(num1, num2);
+        let result = add(num1, num2);
+        if (result > 99999999999) {
+            return result.toExponential(5);
+        } else return result;
     }
     if (operator == "-") {
-        return subtract(num1, num2);
+        let result = subtract(num1, num2);
+        if (result > 99999999999) {
+            return result.toExponential(5);
+        } else return result;
     }
     if (operator == "*") {
-        return multiply(num1, num2);
+        let result = multiply(num1, num2);
+        if (result > 99999999999) {
+            return result.toExponential(5);
+        } else return result;
     }
     if (operator == "/") {
         if (num2 == 0) {
             return "ERROR";
         }
-        return divide(num1, num2);
+        let result = divide(num1, num2);
+        if (result > 99999999999) {
+            return result.toExponential(5);
+        } else return result;
     }
 }
 
