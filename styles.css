@@ -1,6 +1,7 @@
 body {
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: darkcyan;
 }
 
@@ -29,8 +30,6 @@ border-radius: 8px;
     padding-right: 8px;
 }
 
-
-
 .buttons {
     display: flex;
     width: 512px;
@@ -41,13 +40,7 @@ border-radius: 8px;
     flex-direction: column;
 }
 
-#numButton, 
-#oppButton, 
-#signChangeButton, 
-#deleteButton, 
-#clearButton, 
-#decimalButton, 
-#equalButton {
+.button {
     height: 120px;
     width: 120px;
     margin: 4px;
@@ -57,9 +50,27 @@ border-radius: 8px;
     font-size: 32px;
 }
 
+.button:hover {
+    background-color: rgb(100, 100, 100);
+}
+
+.button:active {
+    background-color: rgb(120, 120, 120);
+}
+
 #oppButton,
 #equalButton {
-    background-color: lightgray;
+    background-color: darkgray;
+}
+
+#oppButton:hover,
+#equalButton:hover {
+    background-color: rgb(100, 100, 100);
+}
+
+#oppButton:active,
+#equalButton:active {
+    background-color: rgb(120, 120, 120);
 }
 
 .zero#numButton {
