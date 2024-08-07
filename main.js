@@ -22,7 +22,10 @@ numberButtons.forEach((button) =>
             displayValue = "";
             operatorPressed = false;
         }
-        if (displayValue.length > 9) {
+        if (displayValue.length > 9
+        || displayValue.toString().includes("ERROR")
+        || displayValue.toString().includes("NaN")
+        ) {
             return;
         }
         displayValue += button.textContent;
@@ -31,12 +34,13 @@ numberButtons.forEach((button) =>
     }));
 
 decimalButton.addEventListener("click", function() {
-    if (displayValue.toString().includes(".")) {
-        return;
-    }
-    if (displayValue.length > 9) {
-        return;
-    }
+    if (displayValue.length > 9
+        || displayValue.toString().includes(".") 
+        || displayValue.toString().includes("ERROR")
+        || displayValue.toString().includes("NaN")
+        ) {
+            return;
+        }
     if(display.textContent == 0) {
         displayValue = 0;
     }
@@ -45,9 +49,12 @@ decimalButton.addEventListener("click", function() {
 });
 
 signChangeButton.addEventListener("click", function() {
-    if (displayValue.length > 9) {
-        return;
-    }
+    if (displayValue.length > 9
+        || displayValue.toString().includes("ERROR")
+        || displayValue.toString().includes("NaN")
+        ) {
+            return;
+        }
     displayValue = displayValue * -1;
     display.textContent = displayValue;
 });
